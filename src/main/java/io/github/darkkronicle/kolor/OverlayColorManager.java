@@ -44,14 +44,14 @@ public class OverlayColorManager {
     }
 
     public int getUv(LivingEntity entity, float whiteOverlayProgress) {
+        if (entity.hurtTime > 0 || entity.deathTime > 0) {
+            return getDamageUV(entity.getType());
+        }
         if (entity.getType() == EntityType.CREEPER) {
             return OverlayTexture.packUv(
                     OverlayTexture.getU(whiteOverlayProgress),
                     14
             );
-        }
-        if (entity.hurtTime > 0 || entity.deathTime > 0) {
-            return getDamageUV(entity.getType());
         }
         return OverlayTexture.DEFAULT_UV;
     }
